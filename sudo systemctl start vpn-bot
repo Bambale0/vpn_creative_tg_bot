@@ -1,0 +1,21 @@
+[0;1;32m●[0m wg-quick@wg0.service - WireGuard via wg-quick(8) for wg0
+     Loaded: loaded (/lib/systemd/system/wg-quick@.service; enabled; vendor preset: enabled)
+     Active: [0;1;32mactive (exited)[0m since Mon 2025-08-18 06:56:06 UTC; 8h ago
+       Docs: man:wg-quick(8)
+             man:wg(8)
+             https://www.wireguard.com/
+             https://www.wireguard.com/quickstart/
+             https://git.zx2c4.com/wireguard-tools/about/src/man/wg-quick.8
+             https://git.zx2c4.com/wireguard-tools/about/src/man/wg.8
+   Main PID: 790 (code=exited, status=0/SUCCESS)
+        CPU: 240ms
+
+Aug 18 06:56:03 chillcreativeai.com systemd[1]: Starting WireGuard via wg-quick(8) for wg0...
+Aug 18 06:56:03 chillcreativeai.com wg-quick[790]: [#] ip link add wg0 type wireguard
+Aug 18 06:56:03 chillcreativeai.com wg-quick[790]: [#] wg setconf wg0 /dev/fd/63
+Aug 18 06:56:03 chillcreativeai.com wg-quick[790]: [#] ip -4 address add 10.0.0.1/24 dev wg0
+Aug 18 06:56:03 chillcreativeai.com wg-quick[790]: [#] ip link set mtu 1420 up dev wg0
+Aug 18 06:56:04 chillcreativeai.com wg-quick[790]: [#] ufw route allow in on wg0 out on eth0; iptables -t nat -A POSTROUTING -o eth0 -j MASQUERADE
+Aug 18 06:56:05 chillcreativeai.com wg-quick[886]: Rule added
+Aug 18 06:56:05 chillcreativeai.com wg-quick[886]: Rule added (v6)
+Aug 18 06:56:06 chillcreativeai.com systemd[1]: Finished WireGuard via wg-quick(8) for wg0.

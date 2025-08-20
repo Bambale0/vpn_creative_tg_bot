@@ -1,0 +1,30 @@
+# Python
+__pycache__/
+*.pyc 
+*.pyo 
+*.pyd 
+venv/
+env/ 
+.venv/
+
+# Secrets
+.env
+*.pem
+*.key
+*.crt
+fullchain.pem
+
+# Data 
+*.db
+*.sqlite3
+
+# Backups
+*.backup* 
+*.bak
+
+# Logs
+*.log
+
+# OS
+.DS_Store 
+Thumbs.db
