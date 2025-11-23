@@ -1,0 +1,277 @@
+Aug 13 06:05:35 134145.com systemd[1]: Starting WireGuard via wg-quick(8) for wg0...
+[0;38;5;245m░░ [0m[0;32mSubject: A start job for unit wg-quick@wg0.service has begun execution[0m
+[0;38;5;245m░░[0m [0;32mDefined-By: systemd[0m
+[0;38;5;245m░░[0m [0;32mSupport: http://www.ubuntu.com/support[0m
+[0;38;5;245m░░[0m [0;32m[0m
+[0;38;5;245m░░[0m [0;32mA start job for unit wg-quick@wg0.service has begun execution.[0m
+[0;38;5;245m░░[0m [0;32m[0m
+[0;38;5;245m░░[0m [0;32mThe job identifier is 5791.[0m
+Aug 13 06:05:35 134145.com wg-quick[57363]: [#] ip link add wg0 type wireguard
+Aug 13 06:05:35 134145.com wg-quick[57363]: [#] wg setconf wg0 /dev/fd/63
+Aug 13 06:05:35 134145.com wg-quick[57386]: Line unrecognized: `ListenPort='
+Aug 13 06:05:35 134145.com wg-quick[57386]: Configuration parsing error
+Aug 13 06:05:35 134145.com wg-quick[57363]: [#] ip link delete dev wg0
+Aug 13 06:05:35 134145.com systemd[1]: [0;1;39m[0;1;31m[0;1;39mwg-quick@wg0.service: Main process exited, code=exited, status=1/FAILURE[0m
+[0;38;5;245m░░ [0m[0;32mSubject: Unit process exited[0m
+[0;38;5;245m░░[0m [0;32mDefined-By: systemd[0m
+[0;38;5;245m░░[0m [0;32mSupport: http://www.ubuntu.com/support[0m
+[0;38;5;245m░░[0m [0;32m[0m
+[0;38;5;245m░░[0m [0;32mAn ExecStart= process belonging to unit wg-quick@wg0.service has exited.[0m
+[0;38;5;245m░░[0m [0;32m[0m
+[0;38;5;245m░░[0m [0;32mThe process' exit code is 'exited' and its exit status is 1.[0m
+Aug 13 06:05:35 134145.com systemd[1]: [0;1;38;5;185m[0;1;39m[0;1;38;5;185mwg-quick@wg0.service: Failed with result 'exit-code'.[0m
+[0;38;5;245m░░ [0m[0;32mSubject: Unit failed[0m
+[0;38;5;245m░░[0m [0;32mDefined-By: systemd[0m
+[0;38;5;245m░░[0m [0;32mSupport: http://www.ubuntu.com/support[0m
+[0;38;5;245m░░[0m [0;32m[0m
+[0;38;5;245m░░[0m [0;32mThe unit wg-quick@wg0.service has entered the 'failed' state with result 'exit-code'.[0m
+Aug 13 06:05:35 134145.com systemd[1]: [0;1;31m[0;1;39m[0;1;31mFailed to start WireGuard via wg-quick(8) for wg0.[0m
+[0;38;5;245m░░ [0m[0;32mSubject: A start job for unit wg-quick@wg0.service has failed[0m
+[0;38;5;245m░░[0m [0;32mDefined-By: systemd[0m
+[0;38;5;245m░░[0m [0;32mSupport: http://www.ubuntu.com/support[0m
+[0;38;5;245m░░[0m [0;32m[0m
+[0;38;5;245m░░[0m [0;32mA start job for unit wg-quick@wg0.service has finished with a failure.[0m
+[0;38;5;245m░░[0m [0;32m[0m
+[0;38;5;245m░░[0m [0;32mThe job identifier is 5791 and the job result is failed.[0m
+Aug 13 07:25:53 134145.com systemd[1]: Starting WireGuard via wg-quick(8) for wg0...
+[0;38;5;245m░░ [0m[0;32mSubject: A start job for unit wg-quick@wg0.service has begun execution[0m
+[0;38;5;245m░░[0m [0;32mDefined-By: systemd[0m
+[0;38;5;245m░░[0m [0;32mSupport: http://www.ubuntu.com/support[0m
+[0;38;5;245m░░[0m [0;32m[0m
+[0;38;5;245m░░[0m [0;32mA start job for unit wg-quick@wg0.service has begun execution.[0m
+[0;38;5;245m░░[0m [0;32m[0m
+[0;38;5;245m░░[0m [0;32mThe job identifier is 6081.[0m
+Aug 13 07:25:53 134145.com wg-quick[58795]: [#] ip link add wg0 type wireguard
+Aug 13 07:25:53 134145.com wg-quick[58795]: [#] wg setconf wg0 /dev/fd/63
+Aug 13 07:25:53 134145.com wg-quick[58810]: Line unrecognized: `ListenPort='
+Aug 13 07:25:53 134145.com wg-quick[58810]: Configuration parsing error
+Aug 13 07:25:53 134145.com wg-quick[58795]: [#] ip link delete dev wg0
+Aug 13 07:25:53 134145.com systemd[1]: [0;1;39m[0;1;31m[0;1;39mwg-quick@wg0.service: Main process exited, code=exited, status=1/FAILURE[0m
+[0;38;5;245m░░ [0m[0;32mSubject: Unit process exited[0m
+[0;38;5;245m░░[0m [0;32mDefined-By: systemd[0m
+[0;38;5;245m░░[0m [0;32mSupport: http://www.ubuntu.com/support[0m
+[0;38;5;245m░░[0m [0;32m[0m
+[0;38;5;245m░░[0m [0;32mAn ExecStart= process belonging to unit wg-quick@wg0.service has exited.[0m
+[0;38;5;245m░░[0m [0;32m[0m
+[0;38;5;245m░░[0m [0;32mThe process' exit code is 'exited' and its exit status is 1.[0m
+Aug 13 07:25:53 134145.com systemd[1]: [0;1;38;5;185m[0;1;39m[0;1;38;5;185mwg-quick@wg0.service: Failed with result 'exit-code'.[0m
+[0;38;5;245m░░ [0m[0;32mSubject: Unit failed[0m
+[0;38;5;245m░░[0m [0;32mDefined-By: systemd[0m
+[0;38;5;245m░░[0m [0;32mSupport: http://www.ubuntu.com/support[0m
+[0;38;5;245m░░[0m [0;32m[0m
+[0;38;5;245m░░[0m [0;32mThe unit wg-quick@wg0.service has entered the 'failed' state with result 'exit-code'.[0m
+Aug 13 07:25:53 134145.com systemd[1]: [0;1;31m[0;1;39m[0;1;31mFailed to start WireGuard via wg-quick(8) for wg0.[0m
+[0;38;5;245m░░ [0m[0;32mSubject: A start job for unit wg-quick@wg0.service has failed[0m
+[0;38;5;245m░░[0m [0;32mDefined-By: systemd[0m
+[0;38;5;245m░░[0m [0;32mSupport: http://www.ubuntu.com/support[0m
+[0;38;5;245m░░[0m [0;32m[0m
+[0;38;5;245m░░[0m [0;32mA start job for unit wg-quick@wg0.service has finished with a failure.[0m
+[0;38;5;245m░░[0m [0;32m[0m
+[0;38;5;245m░░[0m [0;32mThe job identifier is 6081 and the job result is failed.[0m
+Aug 13 14:55:03 134145.com systemd[1]: Starting WireGuard via wg-quick(8) for wg0...
+[0;38;5;245m░░ [0m[0;32mSubject: A start job for unit wg-quick@wg0.service has begun execution[0m
+[0;38;5;245m░░[0m [0;32mDefined-By: systemd[0m
+[0;38;5;245m░░[0m [0;32mSupport: http://www.ubuntu.com/support[0m
+[0;38;5;245m░░[0m [0;32m[0m
+[0;38;5;245m░░[0m [0;32mA start job for unit wg-quick@wg0.service has begun execution.[0m
+[0;38;5;245m░░[0m [0;32m[0m
+[0;38;5;245m░░[0m [0;32mThe job identifier is 7365.[0m
+Aug 13 14:55:03 134145.com wg-quick[70938]: [#] ip link add wg0 type wireguard
+Aug 13 14:55:03 134145.com wg-quick[70938]: [#] wg setconf wg0 /dev/fd/63
+Aug 13 14:55:03 134145.com wg-quick[70951]: Line unrecognized: `ListenPort='
+Aug 13 14:55:03 134145.com wg-quick[70951]: Configuration parsing error
+Aug 13 14:55:03 134145.com wg-quick[70938]: [#] ip link delete dev wg0
+Aug 13 14:55:03 134145.com systemd[1]: [0;1;39m[0;1;31m[0;1;39mwg-quick@wg0.service: Main process exited, code=exited, status=1/FAILURE[0m
+[0;38;5;245m░░ [0m[0;32mSubject: Unit process exited[0m
+[0;38;5;245m░░[0m [0;32mDefined-By: systemd[0m
+[0;38;5;245m░░[0m [0;32mSupport: http://www.ubuntu.com/support[0m
+[0;38;5;245m░░[0m [0;32m[0m
+[0;38;5;245m░░[0m [0;32mAn ExecStart= process belonging to unit wg-quick@wg0.service has exited.[0m
+[0;38;5;245m░░[0m [0;32m[0m
+[0;38;5;245m░░[0m [0;32mThe process' exit code is 'exited' and its exit status is 1.[0m
+Aug 13 14:55:03 134145.com systemd[1]: [0;1;38;5;185m[0;1;39m[0;1;38;5;185mwg-quick@wg0.service: Failed with result 'exit-code'.[0m
+[0;38;5;245m░░ [0m[0;32mSubject: Unit failed[0m
+[0;38;5;245m░░[0m [0;32mDefined-By: systemd[0m
+[0;38;5;245m░░[0m [0;32mSupport: http://www.ubuntu.com/support[0m
+[0;38;5;245m░░[0m [0;32m[0m
+[0;38;5;245m░░[0m [0;32mThe unit wg-quick@wg0.service has entered the 'failed' state with result 'exit-code'.[0m
+Aug 13 14:55:03 134145.com systemd[1]: [0;1;31m[0;1;39m[0;1;31mFailed to start WireGuard via wg-quick(8) for wg0.[0m
+[0;38;5;245m░░ [0m[0;32mSubject: A start job for unit wg-quick@wg0.service has failed[0m
+[0;38;5;245m░░[0m [0;32mDefined-By: systemd[0m
+[0;38;5;245m░░[0m [0;32mSupport: http://www.ubuntu.com/support[0m
+[0;38;5;245m░░[0m [0;32m[0m
+[0;38;5;245m░░[0m [0;32mA start job for unit wg-quick@wg0.service has finished with a failure.[0m
+[0;38;5;245m░░[0m [0;32m[0m
+[0;38;5;245m░░[0m [0;32mThe job identifier is 7365 and the job result is failed.[0m
+Aug 13 15:35:29 134145.com systemd[1]: Starting WireGuard via wg-quick(8) for wg0...
+[0;38;5;245m░░ [0m[0;32mSubject: A start job for unit wg-quick@wg0.service has begun execution[0m
+[0;38;5;245m░░[0m [0;32mDefined-By: systemd[0m
+[0;38;5;245m░░[0m [0;32mSupport: http://www.ubuntu.com/support[0m
+[0;38;5;245m░░[0m [0;32m[0m
+[0;38;5;245m░░[0m [0;32mA start job for unit wg-quick@wg0.service has begun execution.[0m
+[0;38;5;245m░░[0m [0;32m[0m
+[0;38;5;245m░░[0m [0;32mThe job identifier is 7811.[0m
+Aug 13 15:35:29 134145.com wg-quick[72873]: [#] ip link add wg0 type wireguard
+Aug 13 15:35:29 134145.com wg-quick[72873]: [#] wg setconf wg0 /dev/fd/63
+Aug 13 15:35:29 134145.com wg-quick[72886]: Line unrecognized: `ListenPort='
+Aug 13 15:35:29 134145.com wg-quick[72886]: Configuration parsing error
+Aug 13 15:35:29 134145.com wg-quick[72873]: [#] ip link delete dev wg0
+Aug 13 15:35:29 134145.com systemd[1]: [0;1;39m[0;1;31m[0;1;39mwg-quick@wg0.service: Main process exited, code=exited, status=1/FAILURE[0m
+[0;38;5;245m░░ [0m[0;32mSubject: Unit process exited[0m
+[0;38;5;245m░░[0m [0;32mDefined-By: systemd[0m
+[0;38;5;245m░░[0m [0;32mSupport: http://www.ubuntu.com/support[0m
+[0;38;5;245m░░[0m [0;32m[0m
+[0;38;5;245m░░[0m [0;32mAn ExecStart= process belonging to unit wg-quick@wg0.service has exited.[0m
+[0;38;5;245m░░[0m [0;32m[0m
+[0;38;5;245m░░[0m [0;32mThe process' exit code is 'exited' and its exit status is 1.[0m
+Aug 13 15:35:29 134145.com systemd[1]: [0;1;38;5;185m[0;1;39m[0;1;38;5;185mwg-quick@wg0.service: Failed with result 'exit-code'.[0m
+[0;38;5;245m░░ [0m[0;32mSubject: Unit failed[0m
+[0;38;5;245m░░[0m [0;32mDefined-By: systemd[0m
+[0;38;5;245m░░[0m [0;32mSupport: http://www.ubuntu.com/support[0m
+[0;38;5;245m░░[0m [0;32m[0m
+[0;38;5;245m░░[0m [0;32mThe unit wg-quick@wg0.service has entered the 'failed' state with result 'exit-code'.[0m
+Aug 13 15:35:29 134145.com systemd[1]: [0;1;31m[0;1;39m[0;1;31mFailed to start WireGuard via wg-quick(8) for wg0.[0m
+[0;38;5;245m░░ [0m[0;32mSubject: A start job for unit wg-quick@wg0.service has failed[0m
+[0;38;5;245m░░[0m [0;32mDefined-By: systemd[0m
+[0;38;5;245m░░[0m [0;32mSupport: http://www.ubuntu.com/support[0m
+[0;38;5;245m░░[0m [0;32m[0m
+[0;38;5;245m░░[0m [0;32mA start job for unit wg-quick@wg0.service has finished with a failure.[0m
+[0;38;5;245m░░[0m [0;32m[0m
+[0;38;5;245m░░[0m [0;32mThe job identifier is 7811 and the job result is failed.[0m
+Aug 13 22:32:19 134145.com systemd[1]: Starting WireGuard via wg-quick(8) for wg0...
+[0;38;5;245m░░ [0m[0;32mSubject: A start job for unit wg-quick@wg0.service has begun execution[0m
+[0;38;5;245m░░[0m [0;32mDefined-By: systemd[0m
+[0;38;5;245m░░[0m [0;32mSupport: http://www.ubuntu.com/support[0m
+[0;38;5;245m░░[0m [0;32m[0m
+[0;38;5;245m░░[0m [0;32mA start job for unit wg-quick@wg0.service has begun execution.[0m
+[0;38;5;245m░░[0m [0;32m[0m
+[0;38;5;245m░░[0m [0;32mThe job identifier is 9289.[0m
+Aug 13 22:32:19 134145.com wg-quick[115082]: [#] ip link add wg0 type wireguard
+Aug 13 22:32:19 134145.com wg-quick[115082]: [#] wg setconf wg0 /dev/fd/63
+Aug 13 22:32:19 134145.com wg-quick[115094]: Key is not the correct length or format: `CLIENT_PUBKEY_HERE'
+Aug 13 22:32:19 134145.com wg-quick[115094]: Configuration parsing error
+Aug 13 22:32:19 134145.com wg-quick[115082]: [#] ip link delete dev wg0
+Aug 13 22:32:19 134145.com systemd[1]: [0;1;39m[0;1;31m[0;1;39mwg-quick@wg0.service: Main process exited, code=exited, status=1/FAILURE[0m
+[0;38;5;245m░░ [0m[0;32mSubject: Unit process exited[0m
+[0;38;5;245m░░[0m [0;32mDefined-By: systemd[0m
+[0;38;5;245m░░[0m [0;32mSupport: http://www.ubuntu.com/support[0m
+[0;38;5;245m░░[0m [0;32m[0m
+[0;38;5;245m░░[0m [0;32mAn ExecStart= process belonging to unit wg-quick@wg0.service has exited.[0m
+[0;38;5;245m░░[0m [0;32m[0m
+[0;38;5;245m░░[0m [0;32mThe process' exit code is 'exited' and its exit status is 1.[0m
+Aug 13 22:32:19 134145.com systemd[1]: [0;1;38;5;185m[0;1;39m[0;1;38;5;185mwg-quick@wg0.service: Failed with result 'exit-code'.[0m
+[0;38;5;245m░░ [0m[0;32mSubject: Unit failed[0m
+[0;38;5;245m░░[0m [0;32mDefined-By: systemd[0m
+[0;38;5;245m░░[0m [0;32mSupport: http://www.ubuntu.com/support[0m
+[0;38;5;245m░░[0m [0;32m[0m
+[0;38;5;245m░░[0m [0;32mThe unit wg-quick@wg0.service has entered the 'failed' state with result 'exit-code'.[0m
+Aug 13 22:32:19 134145.com systemd[1]: [0;1;31m[0;1;39m[0;1;31mFailed to start WireGuard via wg-quick(8) for wg0.[0m
+[0;38;5;245m░░ [0m[0;32mSubject: A start job for unit wg-quick@wg0.service has failed[0m
+[0;38;5;245m░░[0m [0;32mDefined-By: systemd[0m
+[0;38;5;245m░░[0m [0;32mSupport: http://www.ubuntu.com/support[0m
+[0;38;5;245m░░[0m [0;32m[0m
+[0;38;5;245m░░[0m [0;32mA start job for unit wg-quick@wg0.service has finished with a failure.[0m
+[0;38;5;245m░░[0m [0;32m[0m
+[0;38;5;245m░░[0m [0;32mThe job identifier is 9289 and the job result is failed.[0m
+Aug 13 23:06:10 134145.com systemd[1]: Starting WireGuard via wg-quick(8) for wg0...
+[0;38;5;245m░░ [0m[0;32mSubject: A start job for unit wg-quick@wg0.service has begun execution[0m
+[0;38;5;245m░░[0m [0;32mDefined-By: systemd[0m
+[0;38;5;245m░░[0m [0;32mSupport: http://www.ubuntu.com/support[0m
+[0;38;5;245m░░[0m [0;32m[0m
+[0;38;5;245m░░[0m [0;32mA start job for unit wg-quick@wg0.service has begun execution.[0m
+[0;38;5;245m░░[0m [0;32m[0m
+[0;38;5;245m░░[0m [0;32mThe job identifier is 35004.[0m
+Aug 13 23:06:10 134145.com wg-quick[117587]: [#] ip link add wg0 type wireguard
+Aug 13 23:06:10 134145.com wg-quick[117587]: [#] wg setconf wg0 /dev/fd/63
+Aug 13 23:06:10 134145.com wg-quick[117599]: Key is not the correct length or format: `CLIENT_PUBKEY_HERE'
+Aug 13 23:06:10 134145.com wg-quick[117599]: Configuration parsing error
+Aug 13 23:06:10 134145.com wg-quick[117587]: [#] ip link delete dev wg0
+Aug 13 23:06:10 134145.com systemd[1]: [0;1;39m[0;1;31m[0;1;39mwg-quick@wg0.service: Main process exited, code=exited, status=1/FAILURE[0m
+[0;38;5;245m░░ [0m[0;32mSubject: Unit process exited[0m
+[0;38;5;245m░░[0m [0;32mDefined-By: systemd[0m
+[0;38;5;245m░░[0m [0;32mSupport: http://www.ubuntu.com/support[0m
+[0;38;5;245m░░[0m [0;32m[0m
+[0;38;5;245m░░[0m [0;32mAn ExecStart= process belonging to unit wg-quick@wg0.service has exited.[0m
+[0;38;5;245m░░[0m [0;32m[0m
+[0;38;5;245m░░[0m [0;32mThe process' exit code is 'exited' and its exit status is 1.[0m
+Aug 13 23:06:10 134145.com systemd[1]: [0;1;38;5;185m[0;1;39m[0;1;38;5;185mwg-quick@wg0.service: Failed with result 'exit-code'.[0m
+[0;38;5;245m░░ [0m[0;32mSubject: Unit failed[0m
+[0;38;5;245m░░[0m [0;32mDefined-By: systemd[0m
+[0;38;5;245m░░[0m [0;32mSupport: http://www.ubuntu.com/support[0m
+[0;38;5;245m░░[0m [0;32m[0m
+[0;38;5;245m░░[0m [0;32mThe unit wg-quick@wg0.service has entered the 'failed' state with result 'exit-code'.[0m
+Aug 13 23:06:10 134145.com systemd[1]: [0;1;31m[0;1;39m[0;1;31mFailed to start WireGuard via wg-quick(8) for wg0.[0m
+[0;38;5;245m░░ [0m[0;32mSubject: A start job for unit wg-quick@wg0.service has failed[0m
+[0;38;5;245m░░[0m [0;32mDefined-By: systemd[0m
+[0;38;5;245m░░[0m [0;32mSupport: http://www.ubuntu.com/support[0m
+[0;38;5;245m░░[0m [0;32m[0m
+[0;38;5;245m░░[0m [0;32mA start job for unit wg-quick@wg0.service has finished with a failure.[0m
+[0;38;5;245m░░[0m [0;32m[0m
+[0;38;5;245m░░[0m [0;32mThe job identifier is 35004 and the job result is failed.[0m
+[0;1;39m-- Boot 3df5853f676e4b53b5689d63bb9c476b --[0m
+Aug 18 11:26:41 134145.com systemd[1]: Starting WireGuard via wg-quick(8) for wg0...
+[0;38;5;245m░░ [0m[0;32mSubject: A start job for unit wg-quick@wg0.service has begun execution[0m
+[0;38;5;245m░░[0m [0;32mDefined-By: systemd[0m
+[0;38;5;245m░░[0m [0;32mSupport: http://www.ubuntu.com/support[0m
+[0;38;5;245m░░[0m [0;32m[0m
+[0;38;5;245m░░[0m [0;32mA start job for unit wg-quick@wg0.service has begun execution.[0m
+[0;38;5;245m░░[0m [0;32m[0m
+[0;38;5;245m░░[0m [0;32mThe job identifier is 158.[0m
+Aug 18 11:26:42 134145.com wg-quick[811]: [#] ip link add wg0 type wireguard
+Aug 18 11:26:42 134145.com wg-quick[811]: [#] wg setconf wg0 /dev/fd/63
+Aug 18 11:26:42 134145.com wg-quick[881]: Key is not the correct length or format: `CLIENT_PUBKEY_HERE'
+Aug 18 11:26:42 134145.com wg-quick[881]: Configuration parsing error
+Aug 18 11:26:42 134145.com wg-quick[811]: [#] ip link delete dev wg0
+Aug 18 11:26:42 134145.com systemd[1]: [0;1;39m[0;1;31m[0;1;39mwg-quick@wg0.service: Main process exited, code=exited, status=1/FAILURE[0m
+[0;38;5;245m░░ [0m[0;32mSubject: Unit process exited[0m
+[0;38;5;245m░░[0m [0;32mDefined-By: systemd[0m
+[0;38;5;245m░░[0m [0;32mSupport: http://www.ubuntu.com/support[0m
+[0;38;5;245m░░[0m [0;32m[0m
+[0;38;5;245m░░[0m [0;32mAn ExecStart= process belonging to unit wg-quick@wg0.service has exited.[0m
+[0;38;5;245m░░[0m [0;32m[0m
+[0;38;5;245m░░[0m [0;32mThe process' exit code is 'exited' and its exit status is 1.[0m
+Aug 18 11:26:42 134145.com systemd[1]: [0;1;38;5;185m[0;1;39m[0;1;38;5;185mwg-quick@wg0.service: Failed with result 'exit-code'.[0m
+[0;38;5;245m░░ [0m[0;32mSubject: Unit failed[0m
+[0;38;5;245m░░[0m [0;32mDefined-By: systemd[0m
+[0;38;5;245m░░[0m [0;32mSupport: http://www.ubuntu.com/support[0m
+[0;38;5;245m░░[0m [0;32m[0m
+[0;38;5;245m░░[0m [0;32mThe unit wg-quick@wg0.service has entered the 'failed' state with result 'exit-code'.[0m
+Aug 18 11:26:42 134145.com systemd[1]: [0;1;31m[0;1;39m[0;1;31mFailed to start WireGuard via wg-quick(8) for wg0.[0m
+[0;38;5;245m░░ [0m[0;32mSubject: A start job for unit wg-quick@wg0.service has failed[0m
+[0;38;5;245m░░[0m [0;32mDefined-By: systemd[0m
+[0;38;5;245m░░[0m [0;32mSupport: http://www.ubuntu.com/support[0m
+[0;38;5;245m░░[0m [0;32m[0m
+[0;38;5;245m░░[0m [0;32mA start job for unit wg-quick@wg0.service has finished with a failure.[0m
+[0;38;5;245m░░[0m [0;32m[0m
+[0;38;5;245m░░[0m [0;32mThe job identifier is 158 and the job result is failed.[0m
+Aug 19 10:54:04 134145.com systemd[1]: Starting WireGuard via wg-quick(8) for wg0...
+[0;38;5;245m░░ [0m[0;32mSubject: A start job for unit wg-quick@wg0.service has begun execution[0m
+[0;38;5;245m░░[0m [0;32mDefined-By: systemd[0m
+[0;38;5;245m░░[0m [0;32mSupport: http://www.ubuntu.com/support[0m
+[0;38;5;245m░░[0m [0;32m[0m
+[0;38;5;245m░░[0m [0;32mA start job for unit wg-quick@wg0.service has begun execution.[0m
+[0;38;5;245m░░[0m [0;32m[0m
+[0;38;5;245m░░[0m [0;32mThe job identifier is 1048010.[0m
+Aug 19 10:54:04 134145.com wg-quick[79392]: wg-quick: `wg0' already exists
+Aug 19 10:54:04 134145.com systemd[1]: [0;1;39m[0;1;31m[0;1;39mwg-quick@wg0.service: Main process exited, code=exited, status=1/FAILURE[0m
+[0;38;5;245m░░ [0m[0;32mSubject: Unit process exited[0m
+[0;38;5;245m░░[0m [0;32mDefined-By: systemd[0m
+[0;38;5;245m░░[0m [0;32mSupport: http://www.ubuntu.com/support[0m
+[0;38;5;245m░░[0m [0;32m[0m
+[0;38;5;245m░░[0m [0;32mAn ExecStart= process belonging to unit wg-quick@wg0.service has exited.[0m
+[0;38;5;245m░░[0m [0;32m[0m
+[0;38;5;245m░░[0m [0;32mThe process' exit code is 'exited' and its exit status is 1.[0m
+Aug 19 10:54:04 134145.com systemd[1]: [0;1;38;5;185m[0;1;39m[0;1;38;5;185mwg-quick@wg0.service: Failed with result 'exit-code'.[0m
+[0;38;5;245m░░ [0m[0;32mSubject: Unit failed[0m
+[0;38;5;245m░░[0m [0;32mDefined-By: systemd[0m
+[0;38;5;245m░░[0m [0;32mSupport: http://www.ubuntu.com/support[0m
+[0;38;5;245m░░[0m [0;32m[0m
+[0;38;5;245m░░[0m [0;32mThe unit wg-quick@wg0.service has entered the 'failed' state with result 'exit-code'.[0m
+Aug 19 10:54:04 134145.com systemd[1]: [0;1;31m[0;1;39m[0;1;31mFailed to start WireGuard via wg-quick(8) for wg0.[0m
+[0;38;5;245m░░ [0m[0;32mSubject: A start job for unit wg-quick@wg0.service has failed[0m
+[0;38;5;245m░░[0m [0;32mDefined-By: systemd[0m
+[0;38;5;245m░░[0m [0;32mSupport: http://www.ubuntu.com/support[0m
+[0;38;5;245m░░[0m [0;32m[0m
+[0;38;5;245m░░[0m [0;32mA start job for unit wg-quick@wg0.service has finished with a failure.[0m
+[0;38;5;245m░░[0m [0;32m[0m
+[0;38;5;245m░░[0m [0;32mThe job identifier is 1048010 and the job result is failed.[0m
