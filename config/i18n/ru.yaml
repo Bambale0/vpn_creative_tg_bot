@@ -1,0 +1,103 @@
+welcome: |
+  🔒 Добро пожаловать!
+
+  🌸📱💋 Как подключиться к VPN за 1 минуту
+
+  1️⃣ Получай файлик
+  В боте жми «Получить VPN» → тебе выдастся wg0.conf (≧◡≦)♡
+
+  2️⃣ Ставим приложение
+  • iPhone: App Store → WireGuard (´｡• ᵕ •｡)
+  • Android: Google Play → WireGuard (づ｡◕‿‿◕｡)づ
+  • Windows / macOS: wireguard.com/install
+
+  3️⃣ Импортим конфиг
+  • Телефончик: WireGuard → «+» → «Импорт из файла» → выбирай wg0.conf
+  • ПК: WireGuard → «Import tunnel(s) from file» → тот же wg0.conf
+
+  4️⃣ Подключаемся
+  Тумблер вправо / «Activate» — и ты уже в безопасном 2D-мире! ٩(◕‿◕)۶
+
+  5️⃣ Отключиться
+  Тумблер влево / «Disconnect» — возвращайся в 3D-реальность (｡•́︿•̀｡)
+month: мес
+months: мес
+admin_welcome: |
+  ⚡ Админ-панель активна ⚡
+
+  👑 Выберите действие:
+choose_lang: Выберите язык / Choose language / Sprache wählen
+lang_set: Язык установлен – русский 🇷🇺
+payment_message: "💳 Оплатите {price} {currency}"
+discount_applied: "\n🎉 Скидка {discount}% по купону {coupon}!"
+payment_not_found: ❌ Платёж не найден
+payment_processing: ⏳ Платёж обрабатывается
+payment_success: 🎉 Платёж успешен! Подписка активирована.
+subscription_active: ✅ Подписка активна до {date} (UTC)
+subscription_inactive: ❌ Подписка неактивна
+config_error: ❌ Ошибка генерации
+info_unchanged: ℹ️ Информация не изменилась
+admin_qr_caption: 📲 Админ QR
+admin_config_caption: 🔑 Админ-конфиг
+admin_stats_text: "📊 <b>Статистика</b>\n\nПользователей: {users}\nАктивных подписок: {active_sub}\nСгенерировано конфигов: {configs}"
+support_info: 🆘 Напишите @Chill_creative
+pay_button: 💳 Перейти к оплате
+my_subscription_btn: 📊 Моя подписка
+get_config_btn: ⚡ Получить конфиг
+get_trial_btn: 🎁 Активировать Trial
+pricing_btn: 💳 Тарифы
+daily_bonus_btn: 🎯 Ежедневный бонус
+invite_friends_btn: 👥 Пригласить друзей
+setup_instructions_btn: 📚 Инструкция
+wireguard_advantages_btn: 🌟 Преимущества WireGuard
+back_button: ◀️ Назад
+support_btn: 🆘 Поддержка
+admin_getvpn: 🔑 Получить VPN
+admin_stats: 📊 Статистика
+invoice_desc: "VPN {duration} мес"
+qr_caption: 📲 QR-код для быстрой настройки
+config_caption: 📥 Файл конфигурации WireGuard
+expat_coupon: "🎉 Купон для экспатов: {coupon} (-{discount}% на первый месяц!)"
+currency_note: ""
+payment_method_text: "💳 Выберите способ оплаты за {period}:\n\nМы предлагаем безопасные варианты:"
+claim_daily_bonus: 🎁 Забрать бонус
+daily_bonus_available: "🎯 Доступен ежедневный бонус!\n\n💰 Награда: {amount} очков\n🔥 Серия: {streak} дней\n\nЗаберите свой бонус!"
+daily_bonus_cooldown: "⏳ Следующий бонус через {hours}ч {minutes}мин"
+error_occurred: "❌ Произошла ошибка. Попробуйте позже."
+referral_menu_header: "👥 Реферальная программа"
+your_referral_code: "📋 Ваш код: {code}"
+referral_count: "👥 Рефералов: {count}"
+total_bonus_earned: "🎁 Всего бонусов: {amount}"
+recent_bonuses: "📊 Последние бонусы:"
+share_referral_link: "📤 Поделиться ссылкой"
+vpn_setup_instructions_active: "📚 Инструкции по настройке (подписка активна)"
+vpn_config_details: "🔧 Детали конфигурации:\nСервер: {server}\nПользователь: {username}\nПароль: {password}"
+download_windows_config: "💻 Windows"
+download_mac_config: "🍎 macOS"
+download_android_config: "🤖 Android"
+download_ios_config: "📱 iOS"
+vpn_setup_instructions_inactive: "📚 Инструкции по настройке (нужна подписка)"
+back_to_main: "🏠 Главное меню"
+plugins_stats_btn: "📊 Статистика плагинов"
+plugins_manage_btn: "🔧 Управление"
+plugins_install_btn: "📦 Установить"
+plugins_remove_btn: "🗑️ Удалить"
+plugins_update_btn: "🔄 Обновить"
+monitoring_status_btn: "📊 Статус"
+monitoring_realtime_btn: "⚡ Реальные метрики"
+monitoring_security_btn: "🔒 Безопасность"
+monitoring_detailed_btn: "📈 Подробный отчет"
+monitoring_alerts_btn: "🚨 Алерты"
+monitoring_settings_btn: "⚙️ Настройки"
+monitoring_back_btn: "◀️ Назад к плагинам"
+plugins_menu_header: "🛠️ Менеджер плагинов"
+main_menu_text: "🎯 Добро пожаловать в главное меню!"
+main_menu_full: "🎯 Добро пожаловать в главное меню! Здесь вы найдете все возможности нашего VPN сервиса:\n\n• 🎁 Бесплатный Trial - Попробуйте наш сервис бесплатно\n• 🛡️ Получить конфиг - Настройте VPN на ваших устройствах\n• 📊 Мой профиль - Посмотрите статистику и достижения\n• 💳 Тарифы - Выберите подходящий план подписки\n• 🎯 Ежедневный бонус - Получайте награды за ежедневные посещения\n• 👥 Пригласить друзей - Приглашайте друзей и получайте бонусы\n• 📚 Инструкция - Подробные инструкции по настройке\n• 🌟 Преимущества WireGuard - Узнайте почему мы выбрали лучшую технологию\n\n👇 Выберите действие:"
+trial_activated: "🎉 Trial активирован до {end_date}"
+trial_already_used: "❌ Trial уже использован"
+config_error_no_sub: "❌ Нет активной подписки"
+config_file_caption: "📥 Файл конфигурации"
+qr_code_caption: "📲 QR-код"
+wireguard_advantages: "🌟 Преимущества WireGuard"
+config_limit_exceeded: "❌ Превышен лимит конфигураций (максимум 3 на пользователя)"
+config_error_creation: "❌ Ошибка создания конфигурации"

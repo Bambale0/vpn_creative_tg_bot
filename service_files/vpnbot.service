@@ -1,0 +1,23 @@
+[Unit]
+Description=VPN Telegram Bot with Web Interface (Webhook Mode)
+After=network.target
+
+[Service]
+Type=simple
+User=root
+WorkingDirectory=/root/vpnbot_consolidated
+ExecStart=/root/vpnbot_consolidated/venv/bin/python /root/vpnbot_consolidated/service_files/start_webhook_bot.py
+Restart=always
+RestartSec=5
+
+# Логирование
+StandardOutput=file:/root/vpnbot_consolidated/logs/service.log
+StandardError=file:/root/vpnbot_consolidated/logs/service-error.log
+
+# Окружение
+Environment=PYTHONPATH=/root/vpnbot_consolidated
+Environment=SERVICE_MODE=true
+Environment=PATH=/usr/bin:/bin:/usr/sbin:/sbin
+
+[Install]
+WantedBy=multi-user.target

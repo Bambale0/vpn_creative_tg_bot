@@ -1,0 +1,93 @@
+welcome: |
+  🔒 Willkommen!
+
+  🌸📱💋 VPN in 1 Minute einrichten
+
+  1️⃣ Konfigurationsdatei erhalten
+  Drücke "VPN erhalten" im Bot → du erhältst wg0.conf (≧◡≦)♡
+
+  2️⃣ App installieren
+  • iPhone: App Store → WireGuard (´｡• ᵕ •｡)
+  • Android: Google Play → WireGuard (づ｡◕‿‿◕｡)づ
+  • Windows / macOS: wireguard.com/install
+
+  3️⃣ Konfiguration importieren
+  • Handy: WireGuard → "+" → "Aus Datei importieren" → wg0.conf wählen
+  • PC: WireGuard → "Tunnel aus Datei importieren" → dieselbe wg0.conf
+
+  4️⃣ Verbinden
+  Schalter nach rechts / "Aktivieren" — und du bist in einer sicheren 2D-Welt! ٩(◕‿◕)۶
+
+  5️⃣ Trennen
+  Schalter nach links / "Deaktivieren" — zurück in die 3D-Realität (｡•́︿•̀｡)
+month: Monat
+months: Monate
+admin_welcome: |
+  ⚡ Admin-Panel aktiv ⚡
+
+  👑 Aktion wählen:
+choose_lang: Sprache wählen / Choose language / Выберите язык
+lang_set: Sprache – Deutsch 🇩🇪
+payment_message: "💳 Zahlen Sie {price} {currency}"
+discount_applied: "\n🎉 {discount}% Rabatt mit Gutschein {coupon}!"
+payment_not_found: ❌ Zahlung nicht gefunden
+payment_processing: ⏳ Zahlung wird bearbeitet
+payment_success: 🎉 Zahlung erfolgreich! Abonnement aktiviert.
+subscription_active: ✅ Abonnement aktiv bis {date} (UTC)
+subscription_inactive: ❌ Abonnement inaktiv
+config_error: ❌ Generierungsfehler
+info_unchanged: ℹ️ Informationen unverändert
+admin_qr_caption: 📲 Admin-QR
+admin_config_caption: 🔑 Admin-Konfiguration
+admin_stats_text: "📊 <b>Statistiken</b>\n\nBenutzer: {users}\nAktive Abos: {active_sub}\nKonfigs generiert: {configs}"
+support_info: 🆘 Schreiben Sie @Chill_creative
+pay_button: 💳 Bezahlen
+my_subscription_btn: 📊 Mein Abo
+get_config_btn: ⚡ Konfig holen
+support_btn: 🆘 Support
+admin_getvpn: 🔑 VPN holen
+admin_stats: 📊 Statistiken
+invoice_desc: "VPN {duration} Monat(e)"
+qr_caption: 📲 QR-Code für schnelles Setup
+config_caption: 📥 WireGuard-Konfigurationsdatei
+expat_coupon: "🎉 Expat-Gutschein: {coupon} (-{discount}% für den ersten Monat!)"
+currency_note: "💱 Hinweis: Die Zahlung erfolgt in Russischen Rubeln (RUB). Ihre Bank wird den Betrag automatisch in Ihre Landeswährung umrechnen."
+payment_method_text: "💳 Wählen Sie die Zahlungsmethode für {period}:\n\nWir bieten sichere Optionen:"
+claim_daily_bonus: 🎁 Bonus abholen
+daily_bonus_available: "🎯 Täglicher Bonus verfügbar!\n\n💰 Belohnung: {amount} Punkte\n🔥 Serie: {streak} Tage\n\nHolen Sie sich Ihren Bonus!"
+daily_bonus_cooldown: "⏳ Nächster Bonus in {hours}h {minutes}m"
+error_occurred: "❌ Ein Fehler ist aufgetreten. Bitte versuchen Sie es später erneut."
+referral_menu_header: "👥 Empfehlungsprogramm"
+your_referral_code: "📋 Ihr Code: {code}"
+referral_count: "👥 Empfehlungen: {count}"
+total_bonus_earned: "🎁 Gesamtboni: {amount}"
+recent_bonuses: "📊 Letzte Boni:"
+share_referral_link: "📤 Link teilen"
+vpn_setup_instructions_active: "📚 Setup-Anweisungen (Abonnement aktiv)"
+vpn_config_details: "🔧 Konfigurationsdetails:\nServer: {server}\nBenutzer: {username}\nPasswort: {password}"
+download_windows_config: "💻 Windows"
+download_mac_config: "🍎 macOS"
+download_android_config: "🤖 Android"
+download_ios_config: "📱 iOS"
+vpn_setup_instructions_inactive: "📚 Setup-Anweisungen (Abonnement erforderlich)"
+back_to_main: "🏠 Hauptmenü"
+plugins_stats_btn: "📊 Plugin-Statistiken"
+plugins_manage_btn: "🔧 Verwalten"
+plugins_install_btn: "📦 Installieren"
+plugins_remove_btn: "🗑️ Entfernen"
+plugins_update_btn: "🔄 Aktualisieren"
+monitoring_status_btn: "📊 Status"
+monitoring_realtime_btn: "⚡ Echtzeit-Metriken"
+monitoring_security_btn: "🔒 Sicherheit"
+monitoring_detailed_btn: "📈 Detaillierter Bericht"
+monitoring_alerts_btn: "🚨 Alarme"
+monitoring_settings_btn: "⚙️ Einstellungen"
+monitoring_back_btn: "◀️ Zurück zu Plugins"
+plugins_menu_header: "🛠️ Plugin-Manager"
+main_menu_text: "🎯 Willkommen im Hauptmenü!"
+trial_activated: "🎉 Testversion aktiviert bis {end_date}"
+trial_already_used: "❌ Testversion bereits verwendet"
+config_error_no_sub: "❌ Kein aktives Abonnement"
+config_file_caption: "📥 Konfigurationsdatei"
+qr_code_caption: "📲 QR-Code"
+wireguard_advantages: "🌟 WireGuard-Vorteile"

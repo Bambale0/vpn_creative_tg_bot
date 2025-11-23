@@ -1,0 +1,184 @@
+{% extends "base.html" %}
+
+{% block title %}Дашборд - VPN Admin Panel{% endblock title %}
+
+{% block extra_head %}
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/moment"></script>
+{% endblock extra_head %}
+
+{% block content %}
+
+<div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pb-2 mb-3 border-bottom">
+    <h1 class="h2">Дашборд</h1>
+    <div class="btn-toolbar mb-2 mb-md-0">
+        <div class="btn-group me-2">
+            <button type="button" class="btn btn-sm btn-outline-secondary" onclick="refreshMetrics()">
+                <i class="bi bi-arrow-clockwise"></i> Обновить
+            </button>
+        </div>
+        <div class="btn-group">
+            <button type="button" class="btn btn-sm btn-outline-danger" onclick="restartService('vpn')">
+                <i class="bi bi-arrow-repeat"></i> Перезапуск VPN
+            </button>
+            <button type="button" class="btn btn-sm btn-outline-warning" onclick="restartService('bot')">
+                <i class="bi bi-arrow-repeat"></i> Перезапуск бота
+            </button>
+        </div>
+    </div>
+</div>
+
+{% if error %}
+<div class="alert alert-danger" role="alert">
+    {{ error }}
+</div>
+{% endif %}
+
+<!-- Статистика -->
+<div class="row mb-4">
+    <div class="col-md-3">
+        <div class="card stat-card bg-primary text-white">
+            <div class="card-body">
+                <h5 class="card-title">Всего пользователей</h5>
+                <h2 class="card-text">{{ total_users }}</h2>
+                <p class="mb-0"><small>Активных: {{ paid_users }}</small></p>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-3">
+        <div class="card stat-card bg-success text-white">
+            <div class="card-body">
+                <h5 class="card-title">Активные подписки</h5>
+                <h2 class="card-text">{{ paid_users }}</h2>
+                <p class="mb-0"><small>Trial: {{ trial_users }}</small></p>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-3">
+        <div class="card stat-card bg-info text-white">
+            <div class="card-body">
+                <h5 class="card-title">Активные соединения</h5>
+                <h2 class="card-text" id="active-connections">...</h2>
+                <p class="mb-0"><small>Обновляется...</small></p>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-3">
+        <div class="card stat-card bg-warning text-dark">
+            <div class="card-body">
+                <h5 class="card-title">Общий доход</h5>
+                <h2 class="card-text">{{ '{:,.0f}'.format(total_income) }} ₽</h2>
+                <p class="mb-0"><small>За 30 дней</small></p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Графики -->
+<div class="row mb-4">
+    <div class="col-md-6">
+        <div class="card chart-container">
+            <div class="card-header">
+                <h5 class="card-title mb-0">Загрузка системы</h5>
+            </div>
+            <div class="card-body">
+                <canvas id="systemMetricsChart"></canvas>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-6">
+        <div class="card chart-container">
+            <div class="card-header">
+                <h5 class="card-title mb-0">VPN метрики</h5>
+            </div>
+            <div class="card-body">
+                <canvas id="vpnMetricsChart"></canvas>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row mb-4">
+    <div class="col-md-6">
+        <div class="card chart-container">
+            <div class="card-header">
+                <h5 class="card-title mb-0">Регистрации пользователей</h5>
+            </div>
+            <div class="card-body">
+                <canvas id="registrationsChart"></canvas>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-6">
+        <div class="card chart-container">
+            <div class="card-header">
+                <h5 class="card-title mb-0">Доход по дням</h5>
+            </div>
+            <div class="card-body">
+                <canvas id="incomeChart"></canvas>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Последние активности -->
+<div class="row">
+    <div class="col-12">
+        <div class="card">
+            <div class="card-header">
+                <h5 class="card-title mb-0">Последние активности</h5>
+            </div>
+            <div class="card-body">
+                <div class="table-responsive">
+                    <table class="table table-hover">
+                        <thead>
+                            <tr>
+                                <th>Пользователь</th>
+                                <th>Действие</th>
+                                <th>Значение</th>
+                                <th>Дата</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for activity in recent_activities %}
+                            <tr>
+                                <td>{{ activity[0] or 'N/A' }}</td>
+                                <td>{{ activity[1] }}</td>
+                                <td>{{ activity[2] }}</td>
+                                <td>{{ activity[3] }}</td>
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock content %}
+
+{% block extra_js %}
+<script src="/static/js/admin.js"></script>
+<script>
+// Загрузка данных для графиков
+fetch('/admin/api/stats')
+    .then(response => response.json())
+    .then(data => {
+        // Обновляем счетчики
+        if (data.total_users !== undefined) {
+            document.querySelector('.stat-card.bg-primary .card-text').textContent = data.total_users;
+        }
+        if (data.active_subs !== undefined) {
+            document.querySelector('.stat-card.bg-success .card-text').textContent = data.active_subs;
+        }
+        if (data.income) {
+            const totalIncome = (parseFloat(data.income.yookassa || 0) + parseFloat(data.income.crypto || 0));
+            document.querySelector('.stat-card.bg-warning .card-text').textContent = totalIncome.toLocaleString() + ' ₽';
+        }
+    })
+    .catch(error => {
+        console.error('Error loading stats:', error);
+    });
+</script>
+{% endblock extra_js %}

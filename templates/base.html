@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}VPN Admin Panel{% endblock title %}</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.7.2/font/bootstrap-icons.css" rel="stylesheet">
+    <link href="/static/css/admin.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    {% block extra_head %}{% endblock extra_head %}
+        <style>
+            .sidebar {
+                min-height: 100vh;
+                background-color: #f8f9fa;
+                border-right: 1px solid #dee2e6;
+            }
+            .sidebar .nav-link {
+                color: #333;
+                padding: 0.5rem 1rem;
+            }
+            .sidebar .nav-link.active {
+                background-color: #e9ecef;
+                font-weight: 500;
+            }
+            .stat-card {
+                border-radius: 0.5rem;
+                box-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.075);
+            }
+        </style>
+    </head>
+    <body>
+        <div class="container-fluid">
+            <div class="row">
+                <!-- Sidebar -->
+                <div class="col-md-3 col-lg-2 sidebar">
+                    <div class="position-sticky pt-3">
+                        <h5 class="px-3">VPN Admin Panel</h5>
+                        <ul class="nav flex-column">
+                            <li class="nav-item">
+                                <a class="nav-link {% if request.path == '/admin' %}active{% endif %}" href="/admin">
+                                    <i class="bi bi-speedometer2 me-2"></i> Дашборд
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link {% if request.path.startswith('/admin/users') %}active{% endif %}" href="/admin/users">
+                                    <i class="bi bi-people me-2"></i> Пользователи
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link {% if request.path.startswith('/admin/payments') %}active{% endif %}" href="/admin/payments">
+                                    <i class="bi bi-currency-exchange me-2"></i> Платежи
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link {% if request.path.startswith('/admin/subscriptions') %}active{% endif %}" href="/admin/subscriptions">
+                                    <i class="bi bi-clock-history me-2"></i> Подписки
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="/admin/logout">
+                                    <i class="bi bi-box-arrow-right me-2"></i> Выход
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+
+            <!-- Main content -->
+            <div class="col-md-9 col-lg-10 ml-sm-auto px-4 py-4">
+                {% block content %}{% endblock content %}
+            </div>
+        </div>
+    </div>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+        {% block extra_js %}{% endblock extra_js %}
+    </body>
+</html>

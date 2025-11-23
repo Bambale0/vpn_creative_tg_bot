@@ -1,0 +1,108 @@
+
+    {% extends "base.html" %}
+
+    {% block title %}Платежи - VPN Admin Panel{% endblock %}
+
+    {% block content %}
+    <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pb-2 mb-3 border-bottom">
+        <h1 class="h2">Платежи</h1>
+        <div class="btn-toolbar mb-2 mb-md-0">
+            <div class="btn-group me-2">
+                <span class="btn btn-sm btn-outline-secondary">Всего: {{ total_payments }}</span>
+            </div>
+        </div>
+    </div>
+
+    <ul class="nav nav-tabs" id="paymentsTab" role="tablist">
+        <li class="nav-item" role="presentation">
+            <button class="nav-link active" id="yookassa-tab" data-bs-toggle="tab" data-bs-target="#yookassa" type="button" role="tab">ЮKassa</button>
+        </li>
+        <li class="nav-item" role="presentation">
+            <button class="nav-link" id="crypto-tab" data-bs-toggle="tab" data-bs-target="#crypto" type="button" role="tab">Криптовалюта</button>
+        </li>
+    </ul>
+
+    <div class="tab-content" id="paymentsTabContent">
+        <!-- ЮKassa платежи -->
+        <div class="tab-pane fade show active" id="yookassa" role="tabpanel">
+            <div class="table-responsive mt-3">
+                <table class="table table-striped table-sm">
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Пользователь</th>
+                            <th>Сумма</th>
+                            <th>ID ЮKassa</th>
+                            <th>Статус</th>
+                            <th>Дата</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for payment in yookassa_payments %}
+                        <tr>
+                            <td>{{ payment[0] }}</td>
+                            <td>{{ payment[8] or payment[1] }}</td>
+                            <td>{{ payment[2] }} ₽</td>
+                            <td>{{ payment[4] }}</td>
+                            <td>
+                                <span class="badge {% if payment[5] == 'paid' %}bg-success{% else %}bg-warning{% endif %}">
+                                    {{ payment[5] }}
+                                </span>
+                            </td>
+                            <td>{{ payment[6] }}</td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <!-- Криптоплатежи -->
+        <div class="tab-pane fade" id="crypto" role="tabpanel">
+            <div class="table-responsive mt-3">
+                <table class="table table-striped table-sm">
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Пользователь</th>
+                            <th>Сумма (RUB)</th>
+                            <th>Криптовалюта</th>
+                            <th>Адрес</th>
+                            <th>Статус</th>
+                            <th>Дата</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for payment in crypto_payments %}
+                        <tr>
+                            <td>{{ payment[0] }}</td>
+                            <td>{{ payment[8] or payment[1] }}</td>
+                            <td>{{ payment[3] }} ₽</td>
+                            <td>{{ payment[5] }}</td>
+                            <td class="text-truncate" style="max-width: 150px;">{{ payment[6] }}</td>
+                            <td>
+                                <span class="badge {% if payment[7] == 'paid' %}bg-success{% else %}bg-warning{% endif %}">
+                                    {{ payment[7] }}
+                                </span>
+                            </td>
+                            <td>{{ payment[8] }}</td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <!-- Пагинация -->
+    <nav>
+        <ul class="pagination justify-content-center">
+            {% for page_num in range(1, total_pages + 1) %}
+            <li class="page-item {% if page_num == page %}active{% endif %}">
+                <a class="page-link" href="/admin/payments?page={{ page_num }}">{{ page_num }}</a>
+            </li>
+            {% endfor %}
+        </ul>
+    </nav>
+    {% endblock %}
+    

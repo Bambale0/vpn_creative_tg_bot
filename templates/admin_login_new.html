@@ -1,0 +1,87 @@
+{% extends "base.html" %}
+
+{% block title %}Вход в админку - VPN Admin Panel{% endblock title %}
+
+{% block content %}
+<div class="login-container">
+    <div class="login-card">
+        <form method="post">
+            <h2 class="mb-4">Вход в админку</h2>
+            
+            {% if error %}
+            <div class="alert alert-danger" role="alert">
+                {{ error }}
+            </div>
+            {% endif %}
+            
+            <div class="form-floating mb-3">
+                <input type="text" class="form-control" id="username" name="username" placeholder="Логин" required>
+                <label for="username">Логин</label>
+            </div>
+            
+            <div class="form-floating mb-4">
+                <input type="password" class="form-control" id="password" name="password" placeholder="Пароль" required>
+                <label for="password">Пароль</label>
+            </div>
+            
+            <button class="w-100 btn btn-lg btn-primary" type="submit">Войти</button>
+        </form>
+    </div>
+</div>
+{% endblock content %}
+
+{% block extra_css %}
+<style>
+.login-container {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    margin: -15px;
+}
+
+.login-card {
+    background: #ffffff;
+    border-radius: 1rem;
+    box-shadow: 0 1rem 3rem rgba(0, 0, 0, 0.175);
+    padding: 2.5rem;
+    width: 100%;
+    max-width: 400px;
+}
+
+.login-card h2 {
+    color: #495057;
+    margin-bottom: 2rem;
+    text-align: center;
+    font-weight: 300;
+}
+
+.form-floating {
+    margin-bottom: 1rem;
+}
+
+.form-floating label {
+    color: #6c757d;
+}
+
+.btn-primary {
+    background-color: #667eea;
+    border-color: #667eea;
+    padding: 0.75rem;
+    font-size: 1.1rem;
+}
+
+.btn-primary:hover {
+    background-color: #5a6fd8;
+    border-color: #5a6fd8;
+}
+
+@media (max-width: 576px) {
+    .login-card {
+        padding: 2rem;
+        margin: 1rem;
+    }
+}
+</style>
+{% endblock extra_css %}

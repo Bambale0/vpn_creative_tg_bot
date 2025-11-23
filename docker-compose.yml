@@ -1,0 +1,96 @@
+version: '3.8'
+
+services:
+  vpnbot:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: vpnbot_container
+    restart: unless-stopped
+    environment:
+      - TELEGRAM_TOKEN=${TELEGRAM_TOKEN}
+      - WEBHOOK_HOST=${WEBHOOK_HOST}
+      - YOOKASSA_SHOP_ID=${YOOKASSA_SHOP_ID}
+      - YOOKASSA_SECRET_KEY=${YOOKASSA_SECRET_KEY}
+      - CRYPTO_PAY_TOKEN=${CRYPTO_PAY_TOKEN}
+      - ADMIN_IDS=${ADMIN_IDS}
+      - SERVER_IP=${SERVER_IP}
+      - SERVER_PUBLIC_KEY=${SERVER_PUBLIC_KEY}
+    volumes:
+      - ./data:/app/data
+      - ./logs:/app/logs
+      - ./ssl:/app/ssl
+    ports:
+      - "8001:8001"  # Webhook bot port
+    depends_on:
+      - nginx
+    networks:
+      - vpn_network
+
+  webapp:
+    build:
+      context: .
+      dockerfile: Dockerfile.webapp
+    container_name: vpnbot_webapp_container
+    restart: unless-stopped
+    environment:
+      - TELEGRAM_TOKEN=${TELEGRAM_TOKEN}
+      - WEBAPP_PORT=${WEBAPP_PORT}
+    volumes:
+      - ./static:/app/static
+      - ./templates:/app/templates
+      - ./data:/app/data
+      - ./logs:/app/logs
+    ports:
+      - "8000:8000"  # Webapp port
+    depends_on:
+      - vpnbot
+    networks:
+      - vpn_network
+
+  nginx:
+    image: nginx:alpine
+    container_name: vpnbot_nginx_container
+    restart: unless-stopped
+    ports:
+      - "80:80"
+      - "443:443"
+    volumes:
+      - ./nginx.conf:/etc/nginx/nginx.conf:ro
+      - ./ssl:/etc/nginx/ssl:ro
+      - ./logs/nginx:/var/log/nginx
+    networks:
+      - vpn_network
+
+  wireguard:
+    image: linuxserver/wireguard:latest
+    cap_add:
+      - NET_ADMIN
+      - SYS_MODULE
+    environment:
+      - PUID=1000
+      - PGID=1000
+      - TZ=Europe/Moscow
+      - SERVERPORT=${WG_PORT}
+      - PEERS=1
+      - PEERDNS=${WG_DNS}
+      - INTERNAL_SUBNET=${WG_SUBNET}
+    volumes:
+      - ./data/wireguard:/config
+    ports:
+      - "${WG_PORT}:${WG_PORT}/udp"
+    restart: unless-stopped
+    sysctls:
+      - net.ipv4.conf.all.src_valid_mark=1
+    networks:
+      - vpn_network
+
+networks:
+  vpn_network:
+    driver: bridge
+
+volumes:
+  vpn_data:
+    driver: local
+  logs:
+    driver: local
