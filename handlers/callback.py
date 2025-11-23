@@ -25,7 +25,11 @@ from handlers.core.callback_handlers import (
     handle_monitoring_refresh_callback,
     handle_monitoring_realtime_callback,
     handle_monitoring_security_callback,
-    handle_monitoring_detailed_callback
+    handle_monitoring_detailed_callback,
+    handle_quick_vpn_setup_callback,
+    handle_support_faq_callback,
+    handle_contact_support_callback,
+    handle_support_menu_callback
 )
 
 
@@ -53,5 +57,11 @@ def register_callback_handlers(dp):
     dp.callback_query.register(handle_monitoring_realtime_callback, F.data == "monitoring_realtime")
     dp.callback_query.register(handle_monitoring_security_callback, F.data == "monitoring_security")
     dp.callback_query.register(handle_monitoring_detailed_callback, F.data == "monitoring_detailed")
-    
+
+    # Регистрация хендлеров поддержки
+    dp.callback_query.register(handle_quick_vpn_setup_callback, F.data == "quick_vpn_setup")
+    dp.callback_query.register(handle_support_faq_callback, F.data == "support_faq")
+    dp.callback_query.register(handle_contact_support_callback, F.data == "contact_support")
+    dp.callback_query.register(handle_support_menu_callback, F.data == "support_btn")
+
     print("Callback хендлеры зарегистрированы")

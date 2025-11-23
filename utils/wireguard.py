@@ -29,15 +29,15 @@ async def generate_qr_code(config_text):
         )
         qr.add_data(config_text)
         qr.make(fit=True)
-        
+
         # Создаем изображение
         img = qr.make_image(fill_color="black", back_color="white")
-        
+
         # Сохраняем в буфер
         buf = io.BytesIO()
         img.save(buf, format='PNG')
         buf.seek(0)
-        
+
         return buf
     except Exception as e:
         print(f"Ошибка генерации QR-кода: {e}")
@@ -52,14 +52,14 @@ async def run_async(cmd, input_text=None):
         stdout=asyncio.subprocess.PIPE,
         stderr=asyncio.subprocess.PIPE
     )
-    
+
     stdout, stderr = await proc.communicate(
         input=input_text.encode() if input_text else None
     )
-    
+
     if proc.returncode != 0:
         raise Exception(f"Command failed: {stderr.decode()}")
-    
+
     return stdout.decode().strip()
 
 
@@ -156,29 +156,34 @@ async def remove_wg_peer(public_key):
 
 
 async def check_expired_subscriptions_and_remove_configs():
-    """Проверка истекших подписок и удаление неактивных конфигов"""
+    """Проверка истекших подписок и удаление неактивных конфигов (кроме администраторов)"""
     try:
+        from config.config import ADMIN_IDS
+
         async with aiosqlite.connect(DB_PATH) as conn:
             await conn.execute("BEGIN")
 
-            # Находим пользователей с истекшими подписками (включая триалы)
+            # Находим пользователей с истекшими подписками (включая триалы), исключая админов
             cursor = await conn.execute("""
                 SELECT DISTINCT s.user_id, wc.public_key
                 FROM subscriptions s
                 LEFT JOIN wireguard_configs wc ON s.user_id = wc.user_id
                 WHERE s.end_date < datetime('now') AND wc.public_key IS NOT NULL
-            """)
+                AND s.user_id NOT IN ({})
+            """.format(','.join('?' * len(ADMIN_IDS))), ADMIN_IDS)
 
             expired_users = await cursor.fetchall()
 
             # Также проверяем пользователей, которые использовали trial, но у них нет активных подписок
+            # Исключаем админов и тех, кто имеет активные подписки
             cursor = await conn.execute("""
                 SELECT DISTINCT ta.user_id, wc.public_key
                 FROM trial_activations ta
                 LEFT JOIN wireguard_configs wc ON ta.user_id = wc.user_id
                 LEFT JOIN subscriptions s ON ta.user_id = s.user_id AND s.end_date > datetime('now')
                 WHERE wc.public_key IS NOT NULL AND s.user_id IS NULL
-            """)
+                AND ta.user_id NOT IN ({})
+            """.format(','.join('?' * len(ADMIN_IDS))), ADMIN_IDS)
 
             expired_trial_users = await cursor.fetchall()
 

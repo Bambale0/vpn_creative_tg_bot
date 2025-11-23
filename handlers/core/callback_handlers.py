@@ -205,12 +205,17 @@ async def handle_leaderboard_callback(callback: types.CallbackQuery):
 async def handle_get_config_callback(callback: types.CallbackQuery):
     """Обработчик получения конфигурации WireGuard"""
     try:
-        # Проверяем наличие активной подписки
-        subscription_info = await check_subscription(callback.from_user.id, callback.message)
+        # Проверяем права доступа - администраторы всегда имеют доступ
+        from config.config import ADMIN_IDS
+        user_is_admin = callback.from_user.id in ADMIN_IDS
 
-        if not subscription_info.get("has_active"):
-            await callback.answer(await t(callback.from_user.id, "config_error_no_sub"), show_alert=True)
-            return
+        if not user_is_admin:
+            # Для обычных пользователей проверяем подписку
+            subscription_info = await check_subscription(callback.from_user.id, callback.message)
+
+            if not subscription_info.get("has_active"):
+                await callback.answer(await t(callback.from_user.id, "config_error_no_sub"), show_alert=True)
+                return
 
         # Генерируем конфигурацию WireGuard
         try:
@@ -602,3 +607,104 @@ async def handle_device_instructions_callback(callback: types.CallbackQuery):
     except Exception as e:
         log().error(f"Error in device instructions callback for {callback.data}: {e}")
         await callback.answer("❌ Ошибка загрузки инструкций", show_alert=True)
+
+
+async def handle_quick_vpn_setup_callback(callback: types.CallbackQuery):
+    """Обработчик быстрой настройки VPN"""
+    try:
+        from utils.support import get_quick_vpn_instructions
+
+        instructions_text = await get_quick_vpn_instructions(callback.from_user.id)
+
+        # Создаем клавиатуру с кнопками
+        keyboard = InlineKeyboardMarkup(inline_keyboard=[
+            [InlineKeyboardButton(text="📚 Подробные инструкции", callback_data="setup_instructions")],
+            [InlineKeyboardButton(text="🎯 Получить конфиг", callback_data="get_config")],
+            [InlineKeyboardButton(text="👈 Назад", callback_data="support_btn")]
+        ])
+
+        await callback.message.edit_text(
+            instructions_text,
+            reply_markup=keyboard,
+            parse_mode="HTML",
+            disable_web_page_preview=True
+        )
+
+        await callback.answer()
+
+    except Exception as e:
+        log().error(f"Error in quick_vpn_setup callback: {e}")
+        await callback.answer("❌ Ошибка загрузки инструкций", show_alert=True)
+
+
+async def handle_support_faq_callback(callback: types.CallbackQuery):
+    """Обработчик FAQ поддержки"""
+    try:
+        from utils.support import get_support_faq
+
+        faq_text = await get_support_faq(callback.from_user.id)
+
+        # Создаем клавиатуру для возврата
+        keyboard = InlineKeyboardMarkup(inline_keyboard=[
+            [InlineKeyboardButton(text="💬 Связаться с поддержкой", callback_data="contact_support")],
+            [InlineKeyboardButton(text="👈 Назад", callback_data="support_btn")]
+        ])
+
+        await callback.message.edit_text(
+            faq_text,
+            reply_markup=keyboard,
+            parse_mode="HTML"
+        )
+
+        await callback.answer()
+
+    except Exception as e:
+        log().error(f"Error in support_faq callback: {e}")
+        await callback.answer("❌ Ошибка загрузки FAQ", show_alert=True)
+
+
+async def handle_contact_support_callback(callback: types.CallbackQuery):
+    """Обработчик контактов поддержки"""
+    try:
+        from utils.support import get_contact_support_info
+
+        contact_text = await get_contact_support_info(callback.from_user.id)
+
+        # Создаем клавиатуру
+        keyboard = InlineKeyboardMarkup(inline_keyboard=[
+            [InlineKeyboardButton(text="❓ FAQ", callback_data="support_faq")],
+            [InlineKeyboardButton(text="👈 Назад", callback_data="support_btn")]
+        ])
+
+        await callback.message.edit_text(
+            contact_text,
+            reply_markup=keyboard,
+            parse_mode="HTML",
+            disable_web_page_preview=True
+        )
+
+        await callback.answer()
+
+    except Exception as e:
+        log().error(f"Error in contact_support callback: {e}")
+        await callback.answer("❌ Ошибка загрузки контактов", show_alert=True)
+
+
+async def handle_support_menu_callback(callback: types.CallbackQuery):
+    """Обработчик главного меню поддержки"""
+    try:
+        from utils.support import support_menu
+
+        support_text, markup = await support_menu(callback.from_user.id)
+
+        await callback.message.edit_text(
+            support_text,
+            reply_markup=markup,
+            parse_mode="HTML"
+        )
+
+        await callback.answer()
+
+    except Exception as e:
+        log().error(f"Error in support_menu callback: {e}")
+        await callback.answer("❌ Ошибка загрузки поддержки", show_alert=True)

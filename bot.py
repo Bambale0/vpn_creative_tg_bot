@@ -106,6 +106,12 @@ def generate_wg_config(user_id):
     priv = run([WG_EXEC, "genkey"])
     pub = run([WG_EXEC, "pubkey"], input_text=priv)
 
+    # Синхронизируем настройки с остальным кодом
+    server_ip = os.getenv("SERVER_IP", "195.245.239.171")
+    server_public_key = os.getenv("SERVER_PUBLIC_KEY", "2+TcrDqudxEA6qFGaB9UoZ6wLxLKA0n8M/XL9fEWdR8=")
+    wg_port = int(os.getenv("WG_PORT", "51820"))
+    wg_dns = os.getenv("WG_DNS", "94.140.15.15, 94.140.14.14")
+
     with sqlite3.connect(DB_PATH) as conn:
         cur = conn.cursor()
         cur.execute("SELECT COALESCE(MAX(config_id),0) FROM wireguard_configs")
@@ -116,14 +122,14 @@ def generate_wg_config(user_id):
         config = f"""[Interface]
 PrivateKey = {priv}
 Address = {address}/32
-DNS = 8.8.8.8
+DNS = {wg_dns}
 
 [Peer]
-PublicKey = {SERVER_PUBLIC_KEY}
+PublicKey = {server_public_key}
 AllowedIPs = 0.0.0.0/0
-Endpoint = {SERVER_IP}:{WG_PORT}
-PersistentKeepalive = 25
- """
+Endpoint = {server_ip}:{wg_port}
+PersistentKeepalive = 20
+"""
 
         if not register_peer(pub, address):
             raise RuntimeError("failed to add peer")
@@ -140,18 +146,21 @@ PersistentKeepalive = 25
 # 4. Утилиты
 # ------------------------------------------------------------------
 def check_subscription(uid):
+    """Проверка подписки с учетом администраторов (у них вечная подписка)"""
+    # Администраторы всегда имеют премиум подписку
+    if uid in ADMIN_IDS:
+        return True
+
+    # Для обычных пользователей проверяем только активные подписки
+    # (истекшие подписки не считаются)
     with sqlite3.connect(DB_PATH) as conn:
         cur = conn.cursor()
         cur.execute(
-            "SELECT end_date FROM subscriptions WHERE user_id=? ORDER BY end_date DESC LIMIT 1",
+            "SELECT end_date FROM subscriptions WHERE user_id=? AND end_date > datetime('now') ORDER BY end_date DESC LIMIT 1",
             (uid,)
         )
         row = cur.fetchone()
-    return bool(row and datetime.fromisoformat(row[0]).replace(tzinfo=timezone.utc) > datetime.now(timezone.utc))
-
-# ------------------------------------------------------------------
-# 5. Клавиатуры
-# ------------------------------------------------------------------
+    return bool(row)
 def main_menu():
     b = InlineKeyboardBuilder()
     b.row(types.InlineKeyboardButton(text="📅 1 мес – 200₽", callback_data="pay_1"))
@@ -238,34 +247,12 @@ async def cb_check_payment(callback: types.CallbackQuery):
     else:
         await callback.answer("⏳ Платёж обрабатывается", show_alert=True)
 
-@dp.callback_query(F.data == "get_config")
-async def cb_get_config(callback: types.CallbackQuery):
-    uid = callback.from_user.id
-    if not check_subscription(uid) and uid not in ADMIN_IDS:
-        return await callback.answer("❌ Подписка неактивна", show_alert=True)
-
-    cfg = generate_wg_config(uid)
-    if not cfg:
-        return await callback.answer("❌ Ошибка генерации", show_alert=True)
-
-    # QR-код
-    qr_path = f"/tmp/{uid}_vpn_{int(datetime.now().timestamp())}.png"
-    qrcode.make(cfg).save(qr_path)
-    await callback.message.answer_photo(
-        FSInputFile(qr_path),
-        caption="📲 QR-код для быстрой настройки"
-    )
-    os.remove(qr_path)
-
-    # .conf-файл
-    conf_path = f"/tmp/{uid}_{int(datetime.now().timestamp())}.conf"
-    with open(conf_path, "w") as f:
-        f.write(cfg)
-    await callback.message.answer_document(
-        FSInputFile(conf_path),
-        caption="📥 Файл конфигурации WireGuard"
-    )
-    await callback.answer()
+# Обработчик get_config теперь в handlers/core/callback_handlers.py
+# Здесь он закомментирован, чтобы избежать конфликта
+# @dp.callback_query(F.data == "get_config")
+# async def cb_get_config(callback: types.CallbackQuery):
+#     # Логика перенесена в handlers/core/callback_handlers.py
+#     pass
 
 @dp.callback_query(F.data == "my_subscription")
 async def cb_my_sub(callback: types.CallbackQuery):
@@ -329,26 +316,37 @@ async def cb_support(callback: types.CallbackQuery):
     await callback.answer("🆘 Напишите @Chill_creative", show_alert=True)
 
 # ------------------------------------------------------------------
-# 7. Webhook ЮKassa
+# 7. Автоматическая очистка истекших подписок и отправка напоминаний
 # ------------------------------------------------------------------
-async def webhook_handler(request):
-    data = await request.json()
-    if data.get("event") == "payment.succeeded":
-        pid = data["object"]["id"]
-        uid = int(data["object"]["metadata"]["user_id"])
-        duration = int(data["object"]["metadata"]["duration"])
-        end_date = (datetime.utcnow() + timedelta(days=30 * duration)).isoformat(sep=" ", timespec="seconds")
-        with sqlite3.connect(DB_PATH) as conn:
-            conn.execute(
-                "UPDATE subscriptions SET start_date=datetime('now'), end_date=? WHERE payment_id=?",
-                (end_date, pid)
-            )
-        try:
-            await bot.send_message(uid, "🎉 Платёж успешен! Подписка активирована.")
-        except Exception as e:
-            log.warning("send_message failed: %s", e)
-    return web.Response(status=200)
+async def cleanup_expired_subscriptions():
+    """Фоновая задача для автоматической очистки истекших подписок"""
+    reminder_counter = 0  # Счетчик для отправки напоминаний реже очистки
 
+    while True:
+        try:
+            # Импортируем функции
+            from utils.wireguard import check_expired_subscriptions_and_remove_configs, send_subscription_reminders
+
+            # Очистка всегда выполняется каждые 30 минут
+            await check_expired_subscriptions_and_remove_configs()
+            log.info("Automatic cleanup of expired subscriptions completed")
+
+            # Напоминания отправляются каждые 2 часа (каждые 4 цикла по 30 минут)
+            reminder_counter += 1
+            if reminder_counter >= 4:
+                await send_subscription_reminders()
+                log.info("Subscription reminders sent")
+                reminder_counter = 0
+
+        except Exception as e:
+            log.error(f"Error during automatic cleanup: {e}")
+
+        # Запускаем цикл каждые 30 минут (1800 секунд)
+        await asyncio.sleep(1800)
+
+# ------------------------------------------------------------------
+# 8. Webhook ЮKassa
+# ------------------------------------------------------------------
 async def start_webhook():
     app = web.Application()
     app.router.add_post("/webhook", webhook_handler)
@@ -361,12 +359,23 @@ async def start_webhook():
     log.info("Webhook started on 0.0.0.0:8443")
 
 # ------------------------------------------------------------------
-# 8. Запуск
+# 8. Zapusk
 # ------------------------------------------------------------------
 async def main():
+    # Запускаем фоновую задачу очистки истекших подписок
+    cleanup_task = asyncio.create_task(cleanup_expired_subscriptions())
+    log.info("Background cleanup task started")
+
     await bot.delete_webhook()
     await start_webhook()
     await dp.start_polling(bot)
+
+    # Останавливаем фоновую задачу при выходе
+    cleanup_task.cancel()
+    try:
+        await cleanup_task
+    except asyncio.CancelledError:
+        log.info("Background cleanup task stopped")
 
 if __name__ == "__main__":
     asyncio.run(main())

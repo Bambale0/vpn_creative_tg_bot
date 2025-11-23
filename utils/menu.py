@@ -108,6 +108,11 @@ async def main_menu(uid):
         text=await translate_func(uid, "wireguard_advantages_btn"),
         callback_data="wireguard_advantages"
     ))
+
+    builder.row(types.InlineKeyboardButton(
+        text=await translate_func(uid, "support_btn"),
+        callback_data="support_btn"
+    ))
     
     # Добавляем кнопку плагинов только для администраторов
     if uid in ADMIN_IDS:
